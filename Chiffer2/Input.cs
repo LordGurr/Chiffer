@@ -5,8 +5,8 @@ namespace Chiffer2
 {
     internal static class Input
     {
-        private static TouchCollection currentTouchState;
-        private static TouchCollection previousTouchState;
+        public static TouchCollection currentTouchState { private set; get; }
+        public static TouchCollection previousTouchState { private set; get; }
 
         public static void GetState()
         {
@@ -37,6 +37,18 @@ namespace Chiffer2
             for (int i = 0; i < currentTouchState.Count; i++)
             {
                 if (rectangle.Contains(new Vector2(currentTouchState[i].Position.X, currentTouchState[i].Position.Y)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool RectangleContainsPrevious(Rectangle rectangle)
+        {
+            for (int i = 0; i < previousTouchState.Count; i++)
+            {
+                if (rectangle.Contains(new Vector2(previousTouchState[i].Position.X, previousTouchState[i].Position.Y)))
                 {
                     return true;
                 }

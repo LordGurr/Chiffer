@@ -39,6 +39,7 @@ namespace Chiffer2
 
         protected override void Update(GameTime gameTime)
         {
+            Input.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (!buttonPushed)
@@ -63,8 +64,12 @@ namespace Chiffer2
             {
                 string text = "Button pushed!";
                 Vector2 size = font.MeasureString(text);
-                _spriteBatch.DrawString(font, text, new Vector2(button.rectangle.X + button.rectangle.Width / 2 /*- offset.X*/, button.rectangle.Y + button.rectangle.Height / 2 + 100 /*- offset.Y*/), Color.White, 0, new Vector2(size.X / 2, size.Y / 2), 3, SpriteEffects.None, 1);
+                _spriteBatch.DrawString(font, text, new Vector2(button.rectangle.X + button.rectangle.Width / 2 /*- offset.X*/, button.rectangle.Y + button.rectangle.Height / 2 + 200 /*- offset.Y*/), Color.White, 0, new Vector2(size.X / 2, size.Y / 2), 3, SpriteEffects.None, 1);
             }
+#if DEBUG
+            _spriteBatch.DrawString(font, "touches: " + Input.currentTouchState.Count.ToString(), new Vector2(-3, 5), Color.White, 0, new Vector2(), 3, SpriteEffects.None, 0);
+#endif
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }

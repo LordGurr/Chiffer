@@ -35,7 +35,7 @@ namespace Chiffer2
             {
                 if (Input.GetButtonUp())
                 {
-                    if (Input.RectangleContains(rectangle))
+                    if (Input.RectangleContainsPrevious(rectangle))
                     {
                         pressed = false;
                         return true;
